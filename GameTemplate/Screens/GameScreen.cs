@@ -215,19 +215,19 @@ namespace GameTemplate.Screens
             }
             #region main character movements
             
-            {  // check distance between objects to determine if there is a collision 
-                 double distance = Math.Sqrt(Math.Pow(monsterX - shipX, 2) + Math.Pow(monsterY - shipY, 2));
+              // check distance between objects to determine if there is a collision 
+               //  double distance = Math.Sqrt(Math.Pow(monsterX - heroX, 2) + Math.Pow(monsterY - shipY, 2));
 
-                if (distance < 20)
-                {
-                    hit = "hit";
-                }
-                else
-                {
-                    hit = "no hit";
-                }
+                //if (distance < 20)
+                //{
+                //    hit = "hit";
+                //}
+                //else
+                //{
+                //    hit = "no hit";
+                //}
 
-            }
+            
 
 
 
@@ -322,7 +322,8 @@ namespace GameTemplate.Screens
             {
                 e.Graphics.DrawImage(cube2, left[i].X, left[i].Y, 20, 20);
                 e.Graphics.DrawImage(cube2, right[i].X, right[i].Y, 20, 20);
-                formGraphics.DrawString("No hit", Font, , 50, 40);
+              //  formGraphics.DrawString("No hit", Font, , 50, 40);
+
 
             }
 

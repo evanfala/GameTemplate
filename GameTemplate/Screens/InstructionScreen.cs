@@ -32,12 +32,20 @@ namespace GameTemplate.Screens
         {
             this.Size = new Size(ScreenControl.controlWidth, ScreenControl.controlHeight);
             //location
-            exitButton.Location = new Point(ScreenControl.controlWidth / 2 - exitButton.Size.Width / 2, 100);
+            exitButton.Location = new Point(ScreenControl.controlWidth / 2 - exitButton.Size.Width / 2, 500);
             exitButton.Text = "Exit";
-            pictureBox1.Location = new Point(50, 20);
-            pictureBox2.Location = new Point(500, 50);
+            pictureBox1.Location = new Point(0, 20);
+            pictureBox2.Location = new Point(0, 200);
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

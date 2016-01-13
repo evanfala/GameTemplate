@@ -18,8 +18,9 @@ namespace GameTemplate.Screens
         {
             InitializeComponent();
             // cubeImage = Properties.Resources.cube2;
-            SolidBrush drawBrush = new SolidBrush(Color.Black);
+
             Graphics formGraphics = this.CreateGraphics();
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
 
             Font drawFont = new Font("Modern", 16, FontStyle.Bold);
             ship = Properties.Resources.Battle_ship;
@@ -42,7 +43,7 @@ namespace GameTemplate.Screens
         //---------------------------------------
         Image ship;
         Image cube2;
-
+        string hit = "no hit";
         //initial starting points for black rectangle
         int drawX = 300;
         int drawY = 500;
@@ -55,7 +56,14 @@ namespace GameTemplate.Screens
 
         List<int> mX = new List<int>();
         List<int> mY = new List<int>();
-       
+
+        SolidBrush drawBrush = new SolidBrush(Color.Black);
+
+        Font drawFont = new Font("Modern", 16, FontStyle.Bold);
+
+        double distance = 0;
+        double distance2 = 0;
+
         //Graphics objects
         SolidBrush heroBrush = new SolidBrush(Color.White);
         SolidBrush monsterBrush = new SolidBrush(Color.White);
@@ -214,39 +222,60 @@ namespace GameTemplate.Screens
                 right[i] = new Point(right[i].X, right[i].Y + 4);
             }
             #region main character movements
-            
-              // check distance between objects to determine if there is a collision 
-               //  double distance = Math.Sqrt(Math.Pow(monsterX - heroX, 2) + Math.Pow(monsterY - shipY, 2));
 
-                //if (distance < 20)
-                //{
-                //    hit = "hit";
-                //}
-                //else
-                //{
-                //    hit = "no hit";
-                //}
+            // check distance between objects to determine if there is a collision 
 
-            
+
+
+            for (int i = 0; i < left.Count(); i++)
+            {
+
+                distance = Math.Sqrt(Math.Pow(left[i].X - drawX, 2) + Math.Pow(left[i].Y - drawY, 2));
+                distance2 = Math.Sqrt(Math.Pow(right[i].X - drawX, 2) + Math.Pow(right[i].Y - drawY, 2));
+
+                if (distance2 < 25 )
+                {
+                    hit = "hit";
+                    gameTimer.Stop();
+                }
+                else
+                {
+                    hit = "no hit";
+                }
+
+
+
+                if (distance < 25 ) 
+                {
+                    hit = "hit";
+                    gameTimer.Stop();
+
+                }
+                else
+                {
+                    hit = "no hit";
+                }
+            }
+
 
 
 
 
             if (leftArrowDown == true && drawX > 0)
             {
-                drawX-=10;
+                drawX -= 10;
             }
             if (downArrowDown == true)
             {
-                drawY+=10;
+                drawY += 10;
             }
             if (rightArrowDown == true && drawX < 740)
             {
-                drawX+=10;
+                drawX += 10;
             }
             if (upArrowDown == true)
             {
-                drawY-=10;
+                drawY -= 10;
             }
 
             #endregion
@@ -286,6 +315,7 @@ namespace GameTemplate.Screens
 
             //refresh the screen, which causes the GameScreen_Paint method to run
             Refresh();
+
         }
 
         /// <summary>
@@ -317,14 +347,13 @@ namespace GameTemplate.Screens
         {
             //draw rectangle to screen
             e.Graphics.DrawImage(ship, drawX, drawY, 60, 60);
+            e.Graphics.DrawString(hit, drawFont, drawBrush, 50, 40);
+            e.Graphics.DrawString(distance + "", drawFont, drawBrush, 50, 70);
 
             for (int i = 0; i < left.Count(); i++)
             {
                 e.Graphics.DrawImage(cube2, left[i].X, left[i].Y, 20, 20);
                 e.Graphics.DrawImage(cube2, right[i].X, right[i].Y, 20, 20);
-              //  formGraphics.DrawString("No hit", Font, , 50, 40);
-
-
             }
 
         }

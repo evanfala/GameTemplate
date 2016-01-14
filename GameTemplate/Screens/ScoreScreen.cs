@@ -44,5 +44,10 @@ namespace GameTemplate.Screens
         {
 
         }
+
+        private void ScoreScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

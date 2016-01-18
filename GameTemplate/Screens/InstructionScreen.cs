@@ -36,8 +36,8 @@ namespace GameTemplate.Screens
             exitButton.Text = "Exit";
             pictureBox1.Location = new Point(600, 200);
             pictureBox2.Location = new Point(0, 200);
-            pictureBox3.Location = new Point(95, 0);
-            pictureBox4.Location = new Point(628, 0);
+            pictureBox3.Location = new Point(230, 25);
+            pictureBox4.Location = new Point(515, 25);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

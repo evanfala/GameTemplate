@@ -59,7 +59,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::GameTemplate.Properties.Resources.right_key_final;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 175);
+            this.pictureBox1.Location = new System.Drawing.Point(645, 170);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(162, 164);
             this.pictureBox1.TabIndex = 14;
@@ -69,9 +69,9 @@
             // 
             this.pictureBox2.BackgroundImage = global::GameTemplate.Properties.Resources.left_key_2;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 23);
+            this.pictureBox2.Location = new System.Drawing.Point(85, 32);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(142, 146);
+            this.pictureBox2.Size = new System.Drawing.Size(361, 259);
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
             // 

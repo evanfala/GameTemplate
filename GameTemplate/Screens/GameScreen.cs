@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GameTemplate.Dialogs;
+using System.Media;
 
 
 namespace GameTemplate.Screens
@@ -25,8 +26,12 @@ namespace GameTemplate.Screens
             Font drawFont = new Font("Modern", 16, FontStyle.Bold);
             ship = Properties.Resources.Battle_ship;
             cube2 = Properties.Resources.cube2;
-            left.Add(new Point(400, 0));
-            right.Add(new Point(600, 0));
+            left.Add(new Point(randNum.Next(20,200), 0));
+            right.Add(new Point(randNum.Next(100, 150), 0));
+
+            SoundPlayer player = new SoundPlayer(Properties.Resources.alert);
+            player.Play();
+
 
             scoreTimer.Enabled = true;
         }
@@ -57,10 +62,19 @@ namespace GameTemplate.Screens
         int bulletX = -10;
         int bulletY = -10;
 
+       
+
         int newCube = 0;
         double elapsedTime = 0;
 
+        int speed = 4;
+    
+        int cubesfall = 25;
+
         List<int> mX = new List<int>();
+
+        Random randNum = new Random();
+
 
         private void scoreTimer_Tick(object sender, EventArgs e)
         {
@@ -97,15 +111,12 @@ namespace GameTemplate.Screens
             {
                 case Keys.Left:
                     leftArrowDown = true;
-                    break;
-                case Keys.Down:
-                    downArrowDown = true;
+               
                     break;
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
-                case Keys.Up:
-                    upArrowDown = true;
+                
                     break;
                 case Keys.B:
                     bDown = true;
@@ -162,14 +173,12 @@ namespace GameTemplate.Screens
                 case Keys.Left:
                     leftArrowDown = false;
                     break;
-                case Keys.Down:
-                    downArrowDown = false;
+               
                     break;
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
-                case Keys.Up:
-                    upArrowDown = false;
+               
                     break;
                 case Keys.B:
                     bDown = false;
@@ -227,16 +236,59 @@ namespace GameTemplate.Screens
         private void gameTimer_Tick(object sender, EventArgs e)
         {
 
+
+           
             
 
 
+            if (elapsedTime > 15)
+            {
+
+                speed = 6;
+                cubesfall = 20;
+
+            }
+
+
+            if (elapsedTime > 30)
+            {
+
+            speed = 8;
+                cubesfall = 15;
+
+            }
+
+            if (elapsedTime > 45)
+            {
+
+                speed = 12;
+                cubesfall = 12;
+
+            }
+
+            if (elapsedTime > 60)
+            {
+
+                speed = 16;
+                cubesfall = 9;
+
+            }
+
+            if (elapsedTime > 80)
+            {
+
+                speed = 20;
+                cubesfall = 6;
+
+            }
+
             newCube++;
 
-            if (newCube == 20)
+            if (newCube > cubesfall)
             {
-                left.Add(new Point(400, 0));
-                right.Add(new Point(600, 0));
-
+                left.Add(new Point(randNum.Next(10, 399), 0));
+                right.Add(new Point(randNum.Next(400, 750), 0));
+              
                 newCube = 0;
             }
             
@@ -245,9 +297,9 @@ namespace GameTemplate.Screens
 
             for (int i = 0; i < left.Count(); i++)
             {
-                left[i] = new Point(left[i].X, left[i].Y + 3);
+                left[i] = new Point(left[i].X, left[i].Y + speed);
 
-                right[i] = new Point(right[i].X, right[i].Y + 3);
+                right[i] = new Point(right[i].X, right[i].Y + speed);
             }
             #region main character movements
 
@@ -265,6 +317,9 @@ namespace GameTemplate.Screens
                 {
                     hit = "hit";
                     gameTimer.Stop();
+                   // Graphics.DrawString("Game Over", drawFont, drawBrush, 50, 40);
+
+
                 }
                 else
                 {

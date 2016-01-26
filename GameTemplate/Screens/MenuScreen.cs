@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace GameTemplate.Screens
 {
@@ -21,6 +22,9 @@ namespace GameTemplate.Screens
 
             //ScreenControl.setComponentValues(this);
             defaultOverride();
+
+            SoundPlayer player = new SoundPlayer(Properties.Resources.alert);
+            player.Play();
         }
 
         private void playButton_Click(object sender, EventArgs e)

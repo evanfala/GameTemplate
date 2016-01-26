@@ -23,8 +23,9 @@ namespace GameTemplate.Screens
             //ScreenControl.setComponentValues(this);
             defaultOverride();
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.alert);
-            player.Play();
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Kahoot_In_Game_Music_1);
+            player.Play();
+
         }
 
         private void playButton_Click(object sender, EventArgs e)

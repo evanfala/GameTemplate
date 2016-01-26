@@ -29,7 +29,7 @@ namespace GameTemplate.Screens
             left.Add(new Point(randNum.Next(20,200), 0));
             right.Add(new Point(randNum.Next(100, 150), 0));
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.alert);
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Kahoot_In_Game_Music_1);
             player.Play();
 
 

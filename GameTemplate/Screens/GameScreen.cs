@@ -27,6 +27,8 @@ namespace GameTemplate.Screens
             cube2 = Properties.Resources.cube2;
             left.Add(new Point(400, 0));
             right.Add(new Point(600, 0));
+
+            scoreTimer.Enabled = true;
         }
 
         #region required global values - DO NOT CHANGE
@@ -43,6 +45,7 @@ namespace GameTemplate.Screens
         //---------------------------------------
         Image ship;
         Image cube2;
+        
         string hit = "no hit";
         //initial starting points for black rectangle
         int drawX = 300;
@@ -54,7 +57,16 @@ namespace GameTemplate.Screens
         int bulletX = -10;
         int bulletY = -10;
 
+        int newCube = 0;
+        double elapsedTime = 0;
+
         List<int> mX = new List<int>();
+
+        private void scoreTimer_Tick(object sender, EventArgs e)
+        {
+            elapsedTime += 0.1;
+        }
+
         List<int> mY = new List<int>();
 
         SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -215,11 +227,27 @@ namespace GameTemplate.Screens
         private void gameTimer_Tick(object sender, EventArgs e)
         {
 
+            
+
+
+            newCube++;
+
+            if (newCube == 20)
+            {
+                left.Add(new Point(400, 0));
+                right.Add(new Point(600, 0));
+
+                newCube = 0;
+            }
+            
+           
+
+
             for (int i = 0; i < left.Count(); i++)
             {
-                left[i] = new Point(left[i].X, left[i].Y + 4);
+                left[i] = new Point(left[i].X, left[i].Y + 3);
 
-                right[i] = new Point(right[i].X, right[i].Y + 4);
+                right[i] = new Point(right[i].X, right[i].Y + 3);
             }
             #region main character movements
 
@@ -230,10 +258,10 @@ namespace GameTemplate.Screens
             for (int i = 0; i < left.Count(); i++)
             {
 
-                distance = Math.Sqrt(Math.Pow(left[i].X - drawX, 2) + Math.Pow(left[i].Y - drawY, 2));
-                distance2 = Math.Sqrt(Math.Pow(right[i].X - drawX, 2) + Math.Pow(right[i].Y - drawY, 2));
+                distance = Math.Sqrt(Math.Pow(left[i].X - drawX , 2) + Math.Pow(left[i].Y - drawY , 2));
+                distance2 = Math.Sqrt(Math.Pow(right[i].X - drawX , 2) + Math.Pow(right[i].Y - drawY , 2));
 
-                if (distance2 < 25 )
+                if (distance2 < 55 )
                 {
                     hit = "hit";
                     gameTimer.Stop();
@@ -245,7 +273,7 @@ namespace GameTemplate.Screens
 
 
 
-                if (distance < 25 ) 
+                if (distance < 55 ) 
                 {
                     hit = "hit";
                     gameTimer.Stop();
@@ -323,6 +351,7 @@ namespace GameTemplate.Screens
         /// </summary>
         private void pauseGame()
         {
+            scoreTimer.Enabled = false;
             gameTimer.Enabled = false;
             rightArrowDown = leftArrowDown = upArrowDown = downArrowDown = false;
 
@@ -347,13 +376,14 @@ namespace GameTemplate.Screens
         {
             //draw rectangle to screen
             e.Graphics.DrawImage(ship, drawX, drawY, 60, 60);
-            e.Graphics.DrawString(hit, drawFont, drawBrush, 50, 40);
+            e.Graphics.DrawString("loop counter" + newCube, drawFont, drawBrush, 50, 40);
+            e.Graphics.DrawString("Score: " + elapsedTime + " seconds", drawFont, drawBrush, this.Width - 200, 40);
             e.Graphics.DrawString(distance + "", drawFont, drawBrush, 50, 70);
 
             for (int i = 0; i < left.Count(); i++)
             {
-                e.Graphics.DrawImage(cube2, left[i].X, left[i].Y, 20, 20);
-                e.Graphics.DrawImage(cube2, right[i].X, right[i].Y, 20, 20);
+                e.Graphics.DrawImage(cube2, left[i].X, left[i].Y, 60, 60);
+                e.Graphics.DrawImage(cube2, right[i].X, right[i].Y, 60, 60);
             }
 
         }

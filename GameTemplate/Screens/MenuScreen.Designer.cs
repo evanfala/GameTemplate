@@ -104,7 +104,7 @@
             this.instructionButton.BackColor = System.Drawing.Color.Cyan;
             this.instructionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.instructionButton.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionButton.Location = new System.Drawing.Point(-48, 33);
+            this.instructionButton.Location = new System.Drawing.Point(344, 206);
             this.instructionButton.Margin = new System.Windows.Forms.Padding(2);
             this.instructionButton.Name = "instructionButton";
             this.instructionButton.Size = new System.Drawing.Size(180, 75);
